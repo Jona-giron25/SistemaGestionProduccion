@@ -4,85 +4,185 @@ Inherits="SistemaGestionProduccion.Pages.Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-<div class="dashboard-layout">
-
-    
-
-    <!-- Contenido -->
-    <div class="main-content">
+<div class="main-content">
 
     <!-- KPI -->
     <div class="cards">
 
-        <div class="card-kpi">
-            <div class="kpi-icon">📋</div>
-            <h3>
-    <asp:Label ID="lblTotalPedidos"
-        runat="server" />
-</h3>
-            <p>Pedidos Activos</p>
-        </div>
+       <div class="dashboard-kpis">
 
-        <div class="card-kpi">
-            <div class="kpi-icon">🎨</div>
-            <h3>
-    <asp:Label ID="lblDiseno"
-        runat="server" />
-</h3>
-            <p>En Diseño</p>
-        </div>
+    <div class="kpi-card pedidos">
 
-        <div class="card-kpi">
-            <div class="kpi-icon">🏭</div>
-            <h3>
-    <asp:Label ID="lblProduccion"
-        runat="server" />
-</h3>
-            <p>En Producción</p>
-        </div>
+    <span>📋</span>
 
-        <div class="card-kpi">
-            <div class="kpi-icon">✅</div>
-            <h3>
-    <asp:Label ID="lblFinalizados"
-        runat="server" />
-</h3>
-            <p>Entregados</p>
+    <h2>
+        <asp:Label ID="lblTotalPedidos" runat="server" />
+    </h2>
+
+    <p>Pedidos Activos</p>
+
+    <div class="kpi-growth">
+        <asp:Label ID="lblCrecimientoPedidos"
+            runat="server" />
+    </div>
+
+</div>
+
+    <div class="kpi-card diseno">
+        <span>🎨</span>
+        <h2>
+            <asp:Label ID="lblDiseno" runat="server" />
+        </h2>
+        <p>En Diseño</p>
+    </div>
+
+    <div class="kpi-card produccion">
+        <span>🏭</span>
+        <h2>
+            <asp:Label ID="lblProduccion" runat="server" />
+        </h2>
+        <p>Producción</p>
+    </div>
+
+    <div class="kpi-card entregados">
+        <span>✅</span>
+        <h2>
+            <asp:Label ID="lblFinalizados" runat="server" />
+        </h2>
+        <p>Entregados</p>
+    </div>
+
+    <div class="kpi-card clientes">
+        <span>👥</span>
+        <h2>
+            <asp:Label ID="Label1" runat="server" />
+        </h2>
+        <p>Clientes</p>
+    </div>
+
+    <div class="kpi-card ventas">
+        <span>💰</span>
+        <h2>
+            L.
+            <asp:Label ID="lblVentas" runat="server" />
+        </h2>
+        <p>Ingresos Totales</p>
+    </div>
+
+</div>
+
+    </div>
+    <asp:HiddenField ID="hfEstadosLabels" runat="server" />
+<asp:HiddenField ID="hfEstadosValores" runat="server" />
+
+<asp:HiddenField ID="hfEtapasLabels" runat="server" />
+<asp:HiddenField ID="hfEtapasValores" runat="server" />
+
+<asp:HiddenField ID="hfMesesLabels" runat="server" />
+<asp:HiddenField ID="hfMesesValores" runat="server" />
+   <div class="charts-grid">
+
+    <div class="chart-card">
+
+        <h3>Pedidos por Estado</h3>
+
+        <div class="chart-container">
+            <canvas id="chartEstados"></canvas>
         </div>
 
     </div>
 
-    <!-- Dashboard Grid -->
+    <div class="chart-card">
+
+        <h3>Pedidos por Etapa</h3>
+
+        <div class="chart-container">
+            <canvas id="chartEtapas"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="charts-grid">
+
+    <div class="chart-card">
+
+        <h3>Pedidos por Mes</h3>
+
+        <canvas id="chartMensual"></canvas>
+
+    </div>
+
+    <div class="chart-card">
+
+        <h3>Próximas Entregas</h3>
+
+        <div class="entregas-list">
+
+            <div class="entrega-item">
+                <span>PED-004</span>
+                <strong>15 Jun</strong>
+            </div>
+
+            <div class="entrega-item">
+                <span>PED-003</span>
+                <strong>18 Jun</strong>
+            </div>
+
+            <div class="entrega-item">
+                <span>PED-002</span>
+                <strong>20 Jun</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- Grid principal -->
 
     <div class="dashboard-grid">
 
-        <!-- Actividad -->
+        <!-- Actividad reciente -->
 
         <div class="activity-card">
 
             <h3>Actividad Reciente</h3>
 
-            <asp:Repeater
-    ID="rptActividad"
-    runat="server">
+            <div class="timeline">
 
-    <ItemTemplate>
+                <asp:Repeater ID="rptActividad" runat="server">
 
-        <li>
+                    <ItemTemplate>
 
-            <strong>
-                <%# Convert.ToDateTime(Eval("Fecha")).ToString("dd/MM") %>
-            </strong>
+                        <div class="timeline-item">
 
-            -
+                            <div class="timeline-dot"></div>
 
-            <%# Eval("Comentario") %>
+                            <div class="timeline-content">
 
-        </li>
+                                <span class="pedido-badge">
+                                    PED-<%# Eval("IdPedido") %>
+                                </span>
 
-    </ItemTemplate>
+                                <p>
+                                    <%# Eval("Comentario") %>
+                                </p>
 
-</asp:Repeater>
+                                <small>
+                                    <%# Convert.ToDateTime(Eval("Fecha")).ToString("dd/MM/yyyy HH:mm") %>
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </ItemTemplate>
+
+                </asp:Repeater>
+
+            </div>
 
         </div>
 
@@ -93,67 +193,198 @@ Inherits="SistemaGestionProduccion.Pages.Dashboard" %>
             <h3>Resumen del Mes</h3>
 
             <div class="summary-item">
-                Ventas: <strong>L. 125,000</strong>
+                Ventas:
+                <strong>L. 125,000</strong>
             </div>
 
             <div class="summary-item">
                 Clientes:
-<strong>
-    <asp:Label ID="lblClientes"
-        runat="server" />
-</strong>
+                <strong>
+                    <asp:Label ID="lblClientes" runat="server" />
+                </strong>
             </div>
 
             <div class="summary-item">
                 Pedidos:
-<strong>
-    <asp:Label ID="lblPedidosResumen"
-        runat="server" />
-</strong>
+                <strong>
+                    <asp:Label ID="lblPedidosResumen" runat="server" />
+                </strong>
             </div>
 
             <div class="summary-item">
-                Producción: <strong>12</strong>
+                Producción:
+                <strong>12</strong>
             </div>
 
         </div>
 
     </div>
 
-    <!-- Tabla -->
+    <!-- Últimos pedidos -->
 
-    <tbody>
+    <div class="ultimos-pedidos-card">
 
-    <asp:Repeater
-        ID="rptUltimosPedidos"
-        runat="server">
+        <h3>Últimos Pedidos Registrados</h3>
 
-        <ItemTemplate>
+        <table class="tabla-dashboard">
 
-            <tr>
+            <thead>
 
-                <td>
-                    PED-<%# Eval("IdPedido") %>
-                </td>
+                <tr>
+                    <th>Pedido</th>
+                    <th>Cliente</th>
+                    <th>Estado</th>
+                </tr>
 
-                <td>
-                    <%# Eval("NombreCliente") %>
-                </td>
+            </thead>
 
-                <td>
-                    <%# Eval("Estado") %>
-                </td>
+            <tbody>
 
-            </tr>
+                <asp:Repeater
+                    ID="rptUltimosPedidos"
+                    runat="server">
 
-        </ItemTemplate>
+                    <ItemTemplate>
 
-    </asp:Repeater>
+                        <tr>
 
-</tbody>
+                            <td>
+                                PED-<%# Eval("IdPedido") %>
+                            </td>
+
+                            <td>
+                                <%# Eval("NombreCliente") %>
+                            </td>
+
+                            <td>
+
+                                <span class="estado-badge">
+                                    <%# Eval("Estado") %>
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    </ItemTemplate>
+
+                </asp:Repeater>
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    window.onload = function () {
+
+        // ESTADOS
+
+        new Chart(
+            document.getElementById('chartEstados'),
+            {
+                type: 'bar',
+                data: {
+                    labels: [<%= hfEstadosLabels.Value %>],
+            datasets: [{
+                label: 'Pedidos',
+                data: [<%= hfEstadosValores.Value %>],
+
+                        backgroundColor: [
+                            '#8B5CF6', // Diseño
+                            '#F97316', // Finalizado
+                            '#22C55E', // Producción
+                            '#3B82F6', // Entregado
+                            '#EF4444'  // Cancelado
+                        ],
+
+                        borderRadius: 12,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+
+    // ETAPAS
+
+        new Chart(
+            document.getElementById('chartEtapas'),
+            {
+                type: 'doughnut',
+                data: {
+                    labels: [<%= hfEtapasLabels.Value %>],
+            datasets: [{
+                data: [<%= hfEtapasValores.Value %>],
+
+                backgroundColor: [
+                    '#9333EA', // Diseño
+                    '#F97316', // Finalizado
+                    '#22C55E'  // Producción
+                ],
+
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    position: 'top'
+                }
+            }
+        }
+    });
+
+    // PRODUCCION MENSUAL
+
+    new Chart(
+        document.getElementById('chartMensual'),
+        {
+            type: 'line',
+            data: {
+                labels: [<%= hfMesesLabels.Value %>],
+                datasets: [{
+                    label: 'Pedidos',
+                    data: [<%= hfMesesValores.Value %>],
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37,99,235,0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+    };
+
+</script>
 
 </div>
-
-</div>
-
+   
 </asp:Content>

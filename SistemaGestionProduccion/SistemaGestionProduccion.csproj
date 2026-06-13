@@ -352,6 +352,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\GraficoItem.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\SeguimientoPedido.cs" />
     <Compile Include="Models\Usuario.cs" />

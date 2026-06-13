@@ -372,3 +372,55 @@
 .estado-finalizado {
     border-left-color: #6b7280;
 }
+/* ===== BADGES DE ESTADO ===== */
+
+.badge-diseno,
+.badge-produccion,
+.badge-finalizado,
+.badge-entregado,
+.badge-cancelado {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Diseño */
+
+.badge-diseno {
+    background: #F3E8FF;
+    color: #7E22CE;
+}
+
+/* Producción */
+
+.badge-produccion {
+    background: #DCFCE7;
+    color: #15803D;
+}
+
+/* Finalizado */
+
+.badge-finalizado {
+    background: #FFEDD5;
+    color: #C2410C;
+}
+
+/* Entregado */
+
+.badge-entregado {
+    background: #DBEAFE;
+    color: #1D4ED8;
+}
+
+/* Cancelado */
+
+.badge-cancelado {
+    background: #FEE2E2;
+    color: #B91C1C;
+}
+body {
+    background: red !important;
+}

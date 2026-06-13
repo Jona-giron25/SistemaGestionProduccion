@@ -107,7 +107,8 @@ namespace SistemaGestionProduccion.Data
 
                     s.IdSeguimiento =
                         Convert.ToInt32(reader["IdSeguimiento"]);
-
+                    s.IdPedido =
+    Convert.ToInt32(reader["IdPedido"]);
                     s.Fecha =
                         Convert.ToDateTime(reader["Fecha"]);
 
@@ -169,6 +170,148 @@ namespace SistemaGestionProduccion.Data
             }
 
             return lista;
+        }
+
+        public List<GraficoItem> ObtenerPedidosPorEstado()
+        {
+            List<GraficoItem> lista =
+                new List<GraficoItem>();
+
+            using (SqlConnection conn = Conexion.ObtenerConexion())
+            {
+                string query = @"
+            SELECT Estado,
+                   COUNT(*) Total
+            FROM Pedidos
+            GROUP BY Estado";
+
+                SqlCommand cmd =
+                    new SqlCommand(query, conn);
+
+                conn.Open();
+
+                SqlDataReader reader =
+                    cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lista.Add(new GraficoItem
+                    {
+                        Nombre = reader["Estado"].ToString(),
+                        Total = Convert.ToInt32(reader["Total"])
+                    });
+                }
+            }
+
+            return lista;
+        }
+
+        public List<GraficoItem> ObtenerPedidosPorEtapa()
+        {
+            List<GraficoItem> lista =
+                new List<GraficoItem>();
+
+            using (SqlConnection conn = Conexion.ObtenerConexion())
+            {
+                string query = @"
+        SELECT Estado,
+               COUNT(*) Total
+        FROM Pedidos
+        GROUP BY Estado";
+
+                SqlCommand cmd =
+                    new SqlCommand(query, conn);
+
+                conn.Open();
+
+                SqlDataReader reader =
+                    cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lista.Add(new GraficoItem
+                    {
+                        Nombre = reader["Estado"].ToString(),
+                        Total = Convert.ToInt32(reader["Total"])
+                    });
+                }
+            }
+
+            return lista;
+        }
+
+        public List<GraficoItem> ObtenerProduccionMensual()
+        {
+            List<GraficoItem> lista =
+                new List<GraficoItem>();
+
+            using (SqlConnection conn = Conexion.ObtenerConexion())
+            {
+                string query = @"
+SELECT
+    DATENAME(MONTH, FechaEntrega) Mes,
+    MONTH(FechaEntrega) NumeroMes,
+    COUNT(*) Total
+FROM Pedidos
+GROUP BY
+    DATENAME(MONTH, FechaEntrega),
+    MONTH(FechaEntrega)
+ORDER BY NumeroMes";
+
+                SqlCommand cmd =
+                    new SqlCommand(query, conn);
+
+                conn.Open();
+
+                SqlDataReader reader =
+                    cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lista.Add(new GraficoItem
+                    {
+                        Nombre = reader["Mes"].ToString(),
+                        Total = Convert.ToInt32(reader["Total"])
+                    });
+                }
+            }
+
+            return lista;
+        }
+        public decimal ObtenerCrecimientoPedidos()
+        {
+            using (SqlConnection conn = Conexion.ObtenerConexion())
+            {
+                string query = @"
+        DECLARE @MesActual INT = MONTH(GETDATE())
+        DECLARE @MesAnterior INT = MONTH(DATEADD(MONTH,-1,GETDATE()))
+
+        DECLARE @Actual INT =
+        (
+            SELECT COUNT(*)
+            FROM Pedidos
+            WHERE MONTH(FechaPedido) = @MesActual
+        )
+
+        DECLARE @Anterior INT =
+        (
+            SELECT COUNT(*)
+            FROM Pedidos
+            WHERE MONTH(FechaPedido) = @MesAnterior
+        )
+
+        SELECT
+        CASE
+            WHEN @Anterior = 0 THEN 100
+            ELSE ((@Actual - @Anterior) * 100.0) / @Anterior
+        END";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                conn.Open();
+
+                return Convert.ToDecimal(cmd.ExecuteScalar());
+            }
         }
     }
 }

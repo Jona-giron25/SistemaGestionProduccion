@@ -64,8 +64,10 @@ runat="server">
                         </td>
 
                         <td>
-                            <%# Eval("Estado") %>
-                        </td>
+    <span class="badge-diseno">
+        <%# Eval("Estado") %>
+    </span>
+</td>
 
                         <td>
     <%# Eval("EtapaActual") %>

@@ -11,26 +11,8 @@ namespace SistemaGestionProduccion.Pages
 {
 
 
-    public partial class Notificaciones
+    public partial class HistorialPagos
     {
-
-        /// <summary>
-        /// Control btnMarcarLeidas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMarcarLeidas;
-
-        /// <summary>
-        /// Control lblNoLeidas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNoLeidas;
 
         /// <summary>
         /// Control lblTotal.
@@ -42,12 +24,30 @@ namespace SistemaGestionProduccion.Pages
         protected global::System.Web.UI.WebControls.Label lblTotal;
 
         /// <summary>
-        /// Control rptNotificaciones.
+        /// Control lblPagado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptNotificaciones;
+        protected global::System.Web.UI.WebControls.Label lblPagado;
+
+        /// <summary>
+        /// Control lblSaldo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSaldo;
+
+        /// <summary>
+        /// Control rptHistorial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptHistorial;
     }
 }

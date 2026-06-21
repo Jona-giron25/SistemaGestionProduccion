@@ -45,6 +45,10 @@
                     <i class="fas fa-chart-line"></i>
                     Dashboard
                 </a>
+                <a href="/Pages/Kanban.aspx">
+    <i class="fas fa-columns"></i>
+    Kanban
+</a>
 
                 <a href="/Pages/Clientes.aspx">
                     <i class="fas fa-address-book"></i>
@@ -89,9 +93,13 @@
             </nav>
 
             <div class="sidebar-footer">
-                <i class="fas fa-user-circle"></i>
-                César Girón
-            </div>
+    <i class="fas fa-user-circle"></i>
+
+    <asp:Label
+        ID="lblUsuarioSidebar"
+        runat="server"
+        Text="Usuario" />
+</div>
 
         </aside>
 
@@ -106,16 +114,34 @@
 
                 <div class="topbar-right">
 
-                    <button class="notification-btn">
-                        <i class="fas fa-bell"></i>
-                    </button>
+   <a href="/Pages/Notificaciones.aspx"
+   class="notification-btn">
 
-                    <div class="user-info">
-                        <i class="fas fa-user-circle"></i>
-                        Administrador
-                    </div>
+    <i class="fas fa-bell"></i>
 
-                </div>
+    <span class="notification-badge">
+
+        <asp:Label
+            ID="lblNotificaciones"
+            runat="server"
+            Text="0" />
+
+    </span>
+
+</a>
+
+    <div class="user-info">
+
+        <i class="fas fa-user-circle"></i>
+
+        <asp:Label
+            ID="lblUsuario"
+            runat="server"
+            Text="Administrador" />
+
+    </div>
+
+</div>
 
             </header>
 

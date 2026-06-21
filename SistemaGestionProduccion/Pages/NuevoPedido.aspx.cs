@@ -60,6 +60,14 @@ namespace SistemaGestionProduccion.Pages
 
                 if (resultado)
                 {
+                    NotificacionDAO noti = new NotificacionDAO();
+
+                    noti.InsertarNotificacion(
+                        "Nuevo Pedido",
+                        "Se registró un nuevo pedido para " +
+                        ddlClientes.SelectedItem.Text
+                    );
+
                     Response.Write("<script>alert('Pedido guardado correctamente');</script>");
 
                     LimpiarFormulario();

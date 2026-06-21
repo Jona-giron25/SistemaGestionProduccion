@@ -21,5 +21,12 @@ namespace SistemaGestionProduccion.Models
         public string Estado { get; set; }
         public string EtapaActual { get; set; }
         public decimal Total { get; set; }
+        public string TextoPedido
+        {
+            get
+            {
+                return $"PED-{IdPedido:D3} | {NombreCliente} | L. {Total:N2}";
+            }
+        }
     }
 }

@@ -6,134 +6,114 @@ Inherits="SistemaGestionProduccion.Pages.Reportes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 <div class="container-fluid">
+    <asp:HiddenField ID="hfVentasLabels" runat="server" />
+<asp:HiddenField ID="hfVentasValores" runat="server" />
 
-```
-<!-- Encabezado -->
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <div>
-        <h1 class="fw-bold">Reportes y Estadísticas</h1>
-        <p class="text-muted mb-0">
-            Indicadores clave del negocio y rendimiento operativo
-        </p>
-    </div>
+<asp:HiddenField ID="hfEstadosLabels" runat="server" />
+<asp:HiddenField ID="hfEstadosValores" runat="server" />
 
-    <button class="btn btn-primary">
-        <i class="fas fa-file-pdf me-2"></i>
-        Exportar Reporte
-    </button>
-</div>
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-<!-- KPIs -->
-<div class="row mb-4">
-
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body">
-                <h6 class="text-muted">Ventas Totales</h6>
-                <h2 class="fw-bold text-success">L 1.2M</h2>
-                <small class="text-success">
-                    <i class="fas fa-arrow-up"></i> +12%
-                </small>
-            </div>
+        <div>
+            <h1 class="fw-bold">Reportes y Estadísticas</h1>
+            <p class="text-muted mb-0">
+                Indicadores clave del negocio y rendimiento operativo
+            </p>
         </div>
+
+        <asp:Button
+    ID="btnExportarPDF"
+    runat="server"
+    Text="Exportar Reporte PDF"
+    CssClass="btn btn-primary"
+    OnClick="btnExportarPDF_Click" />
+
     </div>
 
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body">
-                <h6 class="text-muted">Pedidos</h6>
-                <h2 class="fw-bold text-primary">154</h2>
-                <small class="text-primary">
-                    Este mes
-                </small>
-            </div>
-        </div>
-    </div>
+    <!-- KPIs -->
+    <div class="row mb-4">
 
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body">
-                <h6 class="text-muted">Producción</h6>
-                <h2 class="fw-bold text-warning">87%</h2>
-                <small class="text-warning">
-                    Eficiencia
-                </small>
-            </div>
-        </div>
-    </div>
+        <div class="col-md-4">
 
-    <div class="col-md-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body">
-                <h6 class="text-muted">Clientes Activos</h6>
-                <h2 class="fw-bold text-info">68</h2>
-                <small class="text-info">
-                    Registrados
-                </small>
-            </div>
-        </div>
-    </div>
+            <div class="card border-0 shadow-sm">
 
-</div>
+                <div class="card-body">
 
-<!-- Graficos -->
-<div class="row mb-4">
+                    <h6 class="text-muted">
+                        Ventas Totales
+                    </h6>
 
-    <div class="col-lg-8">
+                    <h2 class="fw-bold text-success">
+                        L.
+                        <asp:Label
+                            ID="lblVentas"
+                            runat="server"
+                            Text="0.00" />
+                    </h2>
 
-        <div class="card border-0 shadow-sm">
+                    <small class="text-success">
+                        Pagos registrados
+                    </small>
 
-            <div class="card-header bg-white">
-                <h5 class="fw-bold mb-0">
-                    Ventas Mensuales
-                </h5>
-            </div>
-
-            <div class="card-body">
-
-                <div class="mb-3">
-                    <label>Enero - L 120,000</label>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary"
-                             style="width:60%">
-                        </div>
-                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label>Febrero - L 145,000</label>
-                    <div class="progress">
-                        <div class="progress-bar bg-success"
-                             style="width:72%">
-                        </div>
-                    </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Total Pedidos
+                    </h6>
+
+                    <h2 class="fw-bold text-primary">
+
+                        <asp:Label
+                            ID="lblPedidos"
+                            runat="server"
+                            Text="0" />
+
+                    </h2>
+
+                    <small class="text-primary">
+                        Pedidos registrados
+                    </small>
+
                 </div>
 
-                <div class="mb-3">
-                    <label>Marzo - L 180,000</label>
-                    <div class="progress">
-                        <div class="progress-bar bg-info"
-                             style="width:85%">
-                        </div>
-                    </div>
-                </div>
+            </div>
 
-                <div class="mb-3">
-                    <label>Abril - L 210,000</label>
-                    <div class="progress">
-                        <div class="progress-bar bg-warning"
-                             style="width:95%">
-                        </div>
-                    </div>
-                </div>
+        </div>
 
-                <div class="mb-3">
-                    <label>Mayo - L 230,000</label>
-                    <div class="progress">
-                        <div class="progress-bar bg-danger"
-                             style="width:100%">
-                        </div>
-                    </div>
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+                        Clientes Activos
+                    </h6>
+
+                    <h2 class="fw-bold text-info">
+
+                        <asp:Label
+                            ID="lblClientes"
+                            runat="server"
+                            Text="0" />
+
+                    </h2>
+
+                    <small class="text-info">
+                        Clientes registrados
+                    </small>
+
                 </div>
 
             </div>
@@ -142,36 +122,43 @@ Inherits="SistemaGestionProduccion.Pages.Reportes" %>
 
     </div>
 
-    <div class="col-lg-4">
+    <!-- Gráficos -->
+    <div class="row mb-4">
 
-        <div class="card border-0 shadow-sm">
+        <div class="col-lg-8">
 
-            <div class="card-header bg-white">
-                <h5 class="fw-bold mb-0">
-                    Estado de Pedidos
-                </h5>
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-header bg-white">
+                    <h5 class="fw-bold mb-0">
+                        Ventas Mensuales
+                    </h5>
+                </div>
+
+                <div class="card-body text-center">
+
+                    <canvas id="ventasChart"></canvas>
+
+                </div>
+
             </div>
 
-            <div class="card-body">
+        </div>
 
-                <div class="report-item">
-                    <span>Diseño</span>
-                    <span class="badge bg-primary">18</span>
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-header bg-white">
+                    <h5 class="fw-bold mb-0">
+                        Estado de Pedidos
+                    </h5>
                 </div>
 
-                <div class="report-item">
-                    <span>Producción</span>
-                    <span class="badge bg-warning text-dark">24</span>
-                </div>
+                <div class="card-body text-center">
 
-                <div class="report-item">
-                    <span>Entrega</span>
-                    <span class="badge bg-success">35</span>
-                </div>
+                   <canvas id="estadoChart"></canvas>
 
-                <div class="report-item">
-                    <span>Finalizados</span>
-                    <span class="badge bg-dark">77</span>
                 </div>
 
             </div>
@@ -180,129 +167,136 @@ Inherits="SistemaGestionProduccion.Pages.Reportes" %>
 
     </div>
 
-</div>
+    <!-- Tablas -->
+    <div class="row">
 
-<!-- Tablas -->
-<div class="row">
+        <!-- Top Clientes -->
+        <div class="col-lg-6">
 
-    <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
 
-        <div class="card border-0 shadow-sm">
-
-            <div class="card-header bg-white">
-                <h5 class="fw-bold mb-0">
-                    Clientes Principales
-                </h5>
-            </div>
-
-            <div class="card-body">
-
-                <table class="table table-hover">
-
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Pedidos</th>
-                            <th>Ingresos</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td>CEUTEC</td>
-                            <td>24</td>
-                            <td>L 250,000</td>
-                        </tr>
-
-                        <tr>
-                            <td>UNAH</td>
-                            <td>18</td>
-                            <td>L 180,000</td>
-                        </tr>
-
-                        <tr>
-                            <td>Banco Atlántida</td>
-                            <td>15</td>
-                            <td>L 170,000</td>
-                        </tr>
-
-                        <tr>
-                            <td>Promerica</td>
-                            <td>12</td>
-                            <td>L 145,000</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-lg-6">
-
-        <div class="card border-0 shadow-sm">
-
-            <div class="card-header bg-white">
-                <h5 class="fw-bold mb-0">
-                    Producción por Área
-                </h5>
-            </div>
-
-            <div class="card-body">
-
-                <div class="mb-3">
-                    <label>Diseño Gráfico</label>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary"
-                             style="width:85%">
-                            85%
-                        </div>
-                    </div>
+                <div class="card-header bg-white">
+                    <h5 class="fw-bold mb-0">
+                        Top Clientes
+                    </h5>
                 </div>
 
-                <div class="mb-3">
-                    <label>Impresión</label>
-                    <div class="progress">
-                        <div class="progress-bar bg-success"
-                             style="width:92%">
-                            92%
-                        </div>
-                    </div>
-                </div>
+                <div class="card-body">
 
-                <div class="mb-3">
-                    <label>Rotulación</label>
-                    <div class="progress">
-                        <div class="progress-bar bg-warning"
-                             style="width:78%">
-                            78%
-                        </div>
-                    </div>
-                </div>
+                    <table class="table table-hover">
 
-                <div class="mb-3">
-                    <label>Instalación</label>
-                    <div class="progress">
-                        <div class="progress-bar bg-danger"
-                             style="width:70%">
-                            70%
-                        </div>
-                    </div>
+                        <thead>
+
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Pedidos</th>
+                                <th>Facturación</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <asp:Repeater
+                                ID="rptTopClientes"
+                                runat="server">
+
+                                <ItemTemplate>
+
+                                    <tr>
+
+                                        <td>
+                                            <%# Eval("Cliente") %>
+                                        </td>
+
+                                        <td>
+                                            <%# Eval("Pedidos") %>
+                                        </td>
+
+                                        <td>
+                                            L. <%# Eval("Facturacion","{0:N2}") %>
+                                        </td>
+
+                                    </tr>
+
+                                </ItemTemplate>
+
+                            </asp:Repeater>
+
+                        </tbody>
+
+                    </table>
+
                 </div>
 
             </div>
 
         </div>
 
-    </div>
+        <!-- Últimos Pagos -->
+        <div class="col-lg-6">
 
-</div>
-```
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-header bg-white">
+                    <h5 class="fw-bold mb-0">
+                        Últimos Pagos
+                    </h5>
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-hover">
+
+                        <thead>
+
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Usuario</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <asp:Repeater
+                                ID="rptUltimosPagos"
+                                runat="server">
+
+                                <ItemTemplate>
+
+                                    <tr>
+
+                                        <td>
+                                            <%# Eval("Fecha","{0:dd/MM/yyyy HH:mm}") %>
+                                        </td>
+
+                                        <td>
+                                            L. <%# Eval("Monto","{0:N2}") %>
+                                        </td>
+
+                                        <td>
+                                            <%# Eval("Usuario") %>
+                                        </td>
+
+                                    </tr>
+
+                                </ItemTemplate>
+
+                            </asp:Repeater>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -312,28 +306,83 @@ Inherits="SistemaGestionProduccion.Pages.Reportes" %>
     border-radius:15px;
 }
 
-.progress{
-    height:22px;
-    border-radius:12px;
-}
-
-.report-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 0;
-    border-bottom:1px solid #eee;
-}
-
-.badge{
-    padding:8px 12px;
-    font-size:12px;
-}
-
 .btn{
     border-radius:10px;
 }
 
+.table th{
+    font-weight:600;
+}
+
+.table td{
+    vertical-align:middle;
+}
+
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+window.onload = function () {
+
+    // Grafico Ventas
+
+    const ventasCtx =
+        document.getElementById('ventasChart');
+
+    new Chart(ventasCtx, {
+
+        type: 'line',
+
+        data: {
+
+            labels: [
+                <%= hfVentasLabels.Value %>
+            ],
+
+            datasets: [{
+
+                label: 'Ventas',
+
+                data: [
+                    <%= hfVentasValores.Value %>
+                ],
+
+                borderWidth: 3,
+                fill: false
+
+            }]
+        }
+    });
+
+    // Grafico Estados
+
+    const estadoCtx =
+        document.getElementById('estadoChart');
+
+    new Chart(estadoCtx, {
+
+        type: 'doughnut',
+
+        data: {
+
+            labels: [
+                <%= hfEstadosLabels.Value %>
+            ],
+
+            datasets: [{
+
+                data: [
+                    <%= hfEstadosValores.Value %>
+                ]
+
+            }]
+        }
+    });
+
+};
+
+</script>
 
 </asp:Content>

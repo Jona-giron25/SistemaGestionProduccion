@@ -11,124 +11,97 @@ namespace SistemaGestionProduccion.Pages
 {
 
 
-    public partial class Pagos
+    public partial class Kanban
     {
 
         /// <summary>
-        /// Control lblIngresos.
+        /// Control lblCotizacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIngresos;
+        protected global::System.Web.UI.WebControls.Label lblCotizacion;
 
         /// <summary>
-        /// Control lblPendiente.
+        /// Control rptCotizacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPendiente;
+        protected global::System.Web.UI.WebControls.Repeater rptCotizacion;
 
         /// <summary>
-        /// Control lblPagados.
+        /// Control lblAprobacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPagados;
+        protected global::System.Web.UI.WebControls.Label lblAprobacion;
 
         /// <summary>
-        /// Control lblAnticipos.
+        /// Control rptAprobacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAnticipos;
+        protected global::System.Web.UI.WebControls.Repeater rptAprobacion;
 
         /// <summary>
-        /// Control ddlPedido.
+        /// Control lblDiseno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPedido;
+        protected global::System.Web.UI.WebControls.Label lblDiseno;
 
         /// <summary>
-        /// Control ddlTipoPago.
+        /// Control rptDiseno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTipoPago;
+        protected global::System.Web.UI.WebControls.Repeater rptDiseno;
 
         /// <summary>
-        /// Control txtMonto.
+        /// Control lblProduccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMonto;
+        protected global::System.Web.UI.WebControls.Label lblProduccion;
 
         /// <summary>
-        /// Control txtSaldo.
+        /// Control rptProduccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSaldo;
+        protected global::System.Web.UI.WebControls.Repeater rptProduccion;
 
         /// <summary>
-        /// Control btnGuardarPago.
+        /// Control lblFinalizado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarPago;
+        protected global::System.Web.UI.WebControls.Label lblFinalizado;
 
         /// <summary>
-        /// Control lblTotalPedido.
+        /// Control rptFinalizado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalPedido;
-
-        /// <summary>
-        /// Control lblPagadoPedido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPagadoPedido;
-
-        /// <summary>
-        /// Control lblPendientePedido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPendientePedido;
-
-        /// <summary>
-        /// Control rptPagos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPagos;
+        protected global::System.Web.UI.WebControls.Repeater rptFinalizado;
     }
 }

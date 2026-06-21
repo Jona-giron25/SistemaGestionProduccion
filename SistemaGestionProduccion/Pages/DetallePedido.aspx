@@ -43,13 +43,49 @@ runat="server">
             </div>
 
             <div>
-                <strong>Estado:</strong><br />
-                <asp:Label ID="lblEstado" runat="server" />
-            </div>
+    <strong>Estado:</strong><br />
+    <asp:Label ID="lblEstado" runat="server" />
+
+    <br /><br />
+
+    <div style="margin-top:10px;">
+    <span class="status-badge">
+        <asp:Label ID="lblEstadoActual" runat="server" />
+    </span>
+</div>
+</div>
 
         </div>
 
     </div>
+
+    <div class="detail-card">
+
+    <h3>Progreso del Pedido</h3>
+
+    <div class="progress-container">
+
+    <div class="progress-bar-full">
+
+        <div
+            id="progressFill"
+            runat="server"
+            class="progress-fill-custom">
+        </div>
+
+    </div>
+
+    <div class="progress-text">
+
+        <asp:Label
+            ID="lblPorcentaje"
+            runat="server" />
+
+    </div>
+
+</div>
+
+</div>
 
     <div class="detail-card">
 
@@ -212,9 +248,9 @@ runat="server">
 
             <div>
 
-                <span class="timeline-estado">
-                    <%# Eval("Estado") %>
-                </span>
+                <span class="status-badge">
+    <%# Eval("Estado") %>
+</span>
 
             </div>
 

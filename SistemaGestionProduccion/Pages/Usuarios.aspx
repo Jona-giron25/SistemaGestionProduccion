@@ -7,7 +7,6 @@ Inherits="SistemaGestionProduccion.Pages.Usuarios" %>
 
 <div class="container-fluid">
 
-```
 <!-- Encabezado -->
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
@@ -17,10 +16,16 @@ Inherits="SistemaGestionProduccion.Pages.Usuarios" %>
         </p>
     </div>
 
-    <button class="btn btn-primary">
-        <i class="fas fa-user-plus me-2"></i>
-        Nuevo Usuario
-    </button>
+    <asp:HyperLink
+    ID="btnNuevoUsuario"
+    runat="server"
+    NavigateUrl="~/Pages/NuevoUsuario.aspx"
+    CssClass="btn btn-primary">
+
+    <i class="fas fa-user-plus me-2"></i>
+    Nuevo Usuario
+
+</asp:HyperLink>
 </div>
 
 <!-- KPIs -->
@@ -30,7 +35,12 @@ Inherits="SistemaGestionProduccion.Pages.Usuarios" %>
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <h6 class="text-muted">Usuarios Totales</h6>
-                <h2 class="fw-bold text-primary">15</h2>
+                <h2 class="fw-bold text-success">
+    <asp:Label
+        ID="lblActivos"
+        runat="server"
+        Text="0" />
+</h2>
                 <small class="text-muted">Registrados</small>
             </div>
         </div>
@@ -40,27 +50,45 @@ Inherits="SistemaGestionProduccion.Pages.Usuarios" %>
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <h6 class="text-muted">Administradores</h6>
-                <h2 class="fw-bold text-danger">2</h2>
+                <h2 class="fw-bold text-danger">
+    <asp:Label
+        ID="lblAdministradores"
+        runat="server"
+        Text="0" />
+</h2>
                 <small class="text-muted">Acceso completo</small>
             </div>
         </div>
     </div>
 
     <div class="col-md-3">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body">
-                <h6 class="text-muted">Usuarios Activos</h6>
-                <h2 class="fw-bold text-success">13</h2>
-                <small class="text-muted">Conectados recientemente</small>
-            </div>
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <h6 class="text-muted">Usuarios Totales</h6>
+<h2 class="fw-bold text-success">
+    <asp:Label
+        ID="lblTotalUsuarios"
+        runat="server"
+        Text="0" />
+</h2>
+
+<small class="text-muted">
+    Habilitados en el sistema
+</small>
         </div>
     </div>
+</div>
 
     <div class="col-md-3">
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <h6 class="text-muted">Roles</h6>
-                <h2 class="fw-bold text-warning">5</h2>
+                <h2 class="fw-bold text-warning">
+    <asp:Label
+        ID="lblRoles"
+        runat="server"
+        Text="0" />
+</h2>
                 <small class="text-muted">Configurados</small>
             </div>
         </div>
@@ -113,127 +141,68 @@ Inherits="SistemaGestionProduccion.Pages.Usuarios" %>
 
                 <tbody>
 
-                    <tr>
-                        <td>admin</td>
-                        <td>César Girón</td>
-                        <td>admin@brandsolutions.com</td>
+<asp:Repeater
+    ID="rptUsuarios"
+    runat="server">
 
-                        <td>
-                            <span class="badge bg-danger">
-                                Administrador
-                            </span>
-                        </td>
+<ItemTemplate>
 
-                        <td>
-                            <span class="badge bg-success">
-                                Activo
-                            </span>
-                        </td>
+<tr>
 
-                        <td>Hoy 08:15 AM</td>
+    <td>
+        <%# Eval("UsuarioLogin") %>
+    </td>
 
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">
-                                Editar
-                            </button>
+    <td>
+        <%# Eval("Nombre") %>
+    </td>
 
-                            <button class="btn btn-sm btn-outline-danger">
-                                Bloquear
-                            </button>
-                        </td>
-                    </tr>
+    <td>
+        <%# Eval("Correo") %>
+    </td>
 
-                    <tr>
-                        <td>diseno01</td>
-                        <td>Ana López</td>
-                        <td>diseno@brandsolutions.com</td>
+    <td>
 
-                        <td>
-                            <span class="badge bg-primary">
-                                Diseño
-                            </span>
-                        </td>
+        <span class='badge <%# ObtenerClaseRol(Eval("Rol").ToString()) %>'>
 
-                        <td>
-                            <span class="badge bg-success">
-                                Activo
-                            </span>
-                        </td>
+            <%# Eval("Rol") %>
 
-                        <td>Ayer</td>
+        </span>
 
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">
-                                Editar
-                            </button>
+    </td>
 
-                            <button class="btn btn-sm btn-outline-danger">
-                                Bloquear
-                            </button>
-                        </td>
-                    </tr>
+    <td>
 
-                    <tr>
-                        <td>produccion01</td>
-                        <td>Carlos Mejía</td>
-                        <td>produccion@brandsolutions.com</td>
+        <span class='badge <%# Convert.ToBoolean(Eval("Estado")) ? "bg-success" : "bg-secondary" %>'>
 
-                        <td>
-                            <span class="badge bg-warning text-dark">
-                                Producción
-                            </span>
-                        </td>
+            <%# Convert.ToBoolean(Eval("Estado")) ? "Activo" : "Inactivo" %>
 
-                        <td>
-                            <span class="badge bg-success">
-                                Activo
-                            </span>
-                        </td>
+        </span>
 
-                        <td>Hoy 07:30 AM</td>
+    </td>
 
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">
-                                Editar
-                            </button>
+    <td>
+        Sistema
+    </td>
 
-                            <button class="btn btn-sm btn-outline-danger">
-                                Bloquear
-                            </button>
-                        </td>
-                    </tr>
+    <td>
 
-                    <tr>
-                        <td>ventas01</td>
-                        <td>María Flores</td>
-                        <td>ventas@brandsolutions.com</td>
+        <a href='EditarUsuario.aspx?id=<%# Eval("IdUsuario") %>'
+   class="btn btn-sm btn-outline-primary">
 
-                        <td>
-                            <span class="badge bg-info">
-                                Ventas
-                            </span>
-                        </td>
+    Editar
 
-                        <td>
-                            <span class="badge bg-secondary">
-                                Inactivo
-                            </span>
-                        </td>
+</a>
 
-                        <td>Hace 3 días</td>
+    </td>
 
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">
-                                Editar
-                            </button>
+</tr>
 
-                            <button class="btn btn-sm btn-outline-success">
-                                Activar
-                            </button>
-                        </td>
-                    </tr>
+</ItemTemplate>
 
-                </tbody>
+</asp:Repeater>
+
+</tbody>
 
             </table>
 
@@ -242,7 +211,6 @@ Inherits="SistemaGestionProduccion.Pages.Usuarios" %>
     </div>
 
 </div>
-```
 
 </div>
 

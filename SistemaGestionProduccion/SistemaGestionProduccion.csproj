@@ -56,6 +56,12 @@
     <Reference Include="Azure.Identity, Version=1.11.4.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Azure.Identity.1.11.4\lib\netstandard2.0\Azure.Identity.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.5, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.5\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -232,6 +238,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Pages\HistorialPagos.aspx" />
     <Content Include="Pages\Calendario.aspx" />
     <Content Include="Pages\Clientes.aspx" />
     <Content Include="Pages\Dashboard.aspx" />
@@ -239,11 +246,14 @@
     <Content Include="Pages\Diseno.aspx" />
     <Content Include="Pages\Notificaciones.aspx" />
     <Content Include="Pages\NuevoPedido.aspx" />
+    <Content Include="Pages\EditarUsuario.aspx" />
     <Content Include="Pages\Pagos.aspx" />
     <Content Include="Pages\Pedidos.aspx" />
     <Content Include="Pages\Perfil.aspx" />
     <Content Include="Pages\Produccion.aspx" />
     <Content Include="Pages\Reportes.aspx" />
+    <Content Include="Pages\Kanban.aspx" />
+    <Content Include="Pages\NuevoUsuario.aspx" />
     <Content Include="Pages\Usuarios.aspx" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -335,11 +345,15 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Data\ClienteDAO.cs" />
+    <Compile Include="Data\CalendarioDAO.cs" />
+    <Compile Include="Data\NotificacionDAO.cs" />
     <Compile Include="Data\Conexion.cs" />
     <Compile Include="Data\DashboardDAO.cs" />
     <Compile Include="Data\PedidoDAO.cs" />
+    <Compile Include="Data\ReporteDAO.cs" />
     <Compile Include="Data\SeguimientoPedidoDAO.cs" />
     <Compile Include="Data\SqlDatabaseSetup.cs" />
+    <Compile Include="Data\PagoDAO.cs" />
     <Compile Include="Data\UsuarioDAO.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -352,10 +366,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\PagoResumen.cs" />
+    <Compile Include="Models\Pago.cs" />
     <Compile Include="Models\GraficoItem.cs" />
     <Compile Include="Models\Pedido.cs" />
+    <Compile Include="Models\ReportePago.cs" />
     <Compile Include="Models\SeguimientoPedido.cs" />
+    <Compile Include="Models\Notificacion.cs" />
+    <Compile Include="Models\ReporteCliente.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Pages\HistorialPagos.aspx.cs">
+      <DependentUpon>HistorialPagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\HistorialPagos.aspx.designer.cs">
+      <DependentUpon>HistorialPagos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Calendario.aspx.cs">
       <DependentUpon>Calendario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -405,6 +431,13 @@
     <Compile Include="Pages\NuevoPedido.aspx.designer.cs">
       <DependentUpon>NuevoPedido.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EditarUsuario.aspx.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\EditarUsuario.aspx.designer.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Pagos.aspx.cs">
       <DependentUpon>Pagos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -439,6 +472,20 @@
     </Compile>
     <Compile Include="Pages\Reportes.aspx.designer.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kanban.aspx.cs">
+      <DependentUpon>Kanban.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kanban.aspx.designer.cs">
+      <DependentUpon>Kanban.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NuevoUsuario.aspx.cs">
+      <DependentUpon>NuevoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NuevoUsuario.aspx.designer.cs">
+      <DependentUpon>NuevoUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>

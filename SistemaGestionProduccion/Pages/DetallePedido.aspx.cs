@@ -89,6 +89,45 @@ namespace SistemaGestionProduccion.Pages
 
             lblEstadoSeguimiento.Text =
                 pedido.Estado;
+
+            lblEstadoActual.Text = pedido.Estado;
+            switch (pedido.Estado)
+            {
+                case "Aprobación":
+
+                    progressFill.Style["width"] = "25%";
+                    lblPorcentaje.Text = "25%";
+
+                    break;
+
+                case "Diseño":
+
+                    progressFill.Style["width"] = "50%";
+                    lblPorcentaje.Text = "50%";
+
+                    break;
+
+                case "Producción":
+
+                    progressFill.Style["width"] = "75%";
+                    lblPorcentaje.Text = "75%";
+
+                    break;
+
+                case "Finalizado":
+
+                    progressFill.Style["width"] = "100%";
+                    lblPorcentaje.Text = "100%";
+
+                    break;
+
+                default:
+
+                    progressFill.Style["width"] = "10%";
+                    lblPorcentaje.Text = "10%";
+
+                    break;
+            }
         }
 
         private void CargarSeguimientos()
@@ -134,10 +173,21 @@ namespace SistemaGestionProduccion.Pages
                     Session["Nombre"]?.ToString() ?? "Sistema";
 
                 seguimientoDAO.GuardarSeguimiento(
-                    seguimiento);
+    seguimiento);
 
-                pedidoDAO.ActualizarEstadoPedido(
+                NotificacionDAO noti = new NotificacionDAO();
+
+                noti.InsertarNotificacion(
+                    "Seguimiento Actualizado",
+                    "Pedido PED-" +
+                    idPedido.ToString("D3") +
+                    " actualizado a " +
+                    ddlEstadoNuevo.SelectedValue
+                );
+
+                pedidoDAO.ActualizarEstadoEtapa(
                     idPedido,
+                    ddlEstadoNuevo.SelectedValue,
                     ddlEstadoNuevo.SelectedValue);
 
                 txtComentario.Text = "";

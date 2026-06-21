@@ -218,5 +218,85 @@ namespace SistemaGestionProduccion.Data
             }
         }
 
+        public bool ActualizarEstadoEtapa(
+    int idPedido,
+    string estado,
+    string etapa)
+        {
+            using (SqlConnection conn = Conexion.ObtenerConexion())
+            {
+                string query = @"
+        UPDATE Pedidos
+        SET
+            Estado = @Estado,
+            EtapaActual = @Etapa
+        WHERE IdPedido = @IdPedido";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Estado", estado);
+                cmd.Parameters.AddWithValue("@Etapa", etapa);
+                cmd.Parameters.AddWithValue("@IdPedido", idPedido);
+
+                conn.Open();
+
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+        public List<Pedido> ObtenerPedidosPorEstado(string estado)
+        {
+            List<Pedido> lista = new List<Pedido>();
+
+            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            {
+                string query = @"
+        SELECT
+            p.*,
+            c.Nombre AS NombreCliente
+        FROM Pedidos p
+        INNER JOIN Clientes c
+            ON p.IdCliente = c.IdCliente
+        WHERE p.Estado = @Estado
+        ORDER BY p.FechaEntrega";
+
+                SqlCommand cmd =
+                    new SqlCommand(query, conexion);
+
+                cmd.Parameters.AddWithValue(
+                    "@Estado",
+                    estado);
+
+                conexion.Open();
+
+                SqlDataReader reader =
+                    cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lista.Add(new Pedido()
+                    {
+                        IdPedido =
+                            Convert.ToInt32(reader["IdPedido"]),
+
+                        NombreCliente =
+                            reader["NombreCliente"].ToString(),
+
+                        TipoTrabajo =
+                            reader["TipoTrabajo"].ToString(),
+
+                        Estado =
+                            reader["Estado"].ToString(),
+
+                        FechaEntrega =
+                            Convert.ToDateTime(reader["FechaEntrega"]),
+
+                        Total =
+                            Convert.ToDecimal(reader["Total"])
+                    });
+                }
+            }
+
+            return lista;
+        }
     }
 }

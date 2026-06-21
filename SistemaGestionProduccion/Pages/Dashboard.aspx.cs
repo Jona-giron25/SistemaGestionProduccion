@@ -1,7 +1,6 @@
 ﻿using System;
-using SistemaGestionProduccion.Data;
 using System.Linq;
-using SistemaGestionProduccion.Models;
+using SistemaGestionProduccion.Data;
 
 namespace SistemaGestionProduccion.Pages
 {
@@ -18,43 +17,18 @@ namespace SistemaGestionProduccion.Pages
                 CargarActividadReciente();
                 CargarUltimosPedidos();
                 CargarGraficos();
+
+                lblNombreUsuario.Text =
+                    "Bienvenido, " +
+                    Session["Nombre"];
+
+                lblRolUsuario.Text =
+                    "Rol: " +
+                    Session["Rol"];
+
             }
         }
-        private void CargarGraficos()
-        {
-            var estados =
-                dashboardDAO.ObtenerPedidosPorEstado();
 
-            hfEstadosLabels.Value =
-                string.Join(",",
-                estados.Select(x => "'" + x.Nombre + "'"));
-
-            hfEstadosValores.Value =
-                string.Join(",",
-                estados.Select(x => x.Total));
-
-            var etapas =
-                dashboardDAO.ObtenerPedidosPorEtapa();
-
-            hfEtapasLabels.Value =
-                string.Join(",",
-                etapas.Select(x => "'" + x.Nombre + "'"));
-
-            hfEtapasValores.Value =
-                string.Join(",",
-                etapas.Select(x => x.Total));
-
-            var mensual =
-                dashboardDAO.ObtenerProduccionMensual();
-
-            hfMesesLabels.Value =
-                string.Join(",",
-                mensual.Select(x => "'" + x.Nombre + "'"));
-
-            hfMesesValores.Value =
-                string.Join(",",
-                mensual.Select(x => x.Total));
-        }
         private void CargarIndicadores()
         {
             lblTotalPedidos.Text =
@@ -69,16 +43,22 @@ namespace SistemaGestionProduccion.Pages
             lblFinalizados.Text =
                 dashboardDAO.ObtenerPedidosFinalizados().ToString();
 
+            lblClientesKPI.Text =
+    dashboardDAO.ObtenerTotalClientes().ToString();
+
             lblClientes.Text =
                 dashboardDAO.ObtenerTotalClientes().ToString();
 
             lblPedidosResumen.Text =
                 dashboardDAO.ObtenerTotalPedidos().ToString();
 
-            lblCrecimientoPedidos.Text =
-    dashboardDAO.ObtenerCrecimientoPedidos()
-    .ToString("0") + "% vs mes anterior";
+            lblVentas.Text =
+                dashboardDAO.ObtenerVentasTotales()
+                .ToString("N2");
+
+            
         }
+
         private void CargarActividadReciente()
         {
             rptActividad.DataSource =
@@ -86,12 +66,54 @@ namespace SistemaGestionProduccion.Pages
 
             rptActividad.DataBind();
         }
+
         private void CargarUltimosPedidos()
         {
             rptUltimosPedidos.DataSource =
                 dashboardDAO.ObtenerUltimosPedidos();
 
             rptUltimosPedidos.DataBind();
+        }
+
+        private void CargarGraficos()
+        {
+            var estados =
+                dashboardDAO.ObtenerPedidosPorEstado();
+
+            hfEstadosLabels.Value =
+                string.Join(",",
+                estados.Select(x =>
+                "'" + x.Nombre + "'"));
+
+            hfEstadosValores.Value =
+                string.Join(",",
+                estados.Select(x =>
+                x.Total));
+            var ventas =
+    dashboardDAO.ObtenerVentasPorMes();
+
+            hfVentasLabels.Value =
+                string.Join(",",
+                ventas.Select(x =>
+                "'" + x.Nombre + "'"));
+
+            hfVentasValores.Value =
+                string.Join(",",
+                ventas.Select(x =>
+                x.Total));
+
+            var mensual =
+                dashboardDAO.ObtenerProduccionMensual();
+
+            hfMesesLabels.Value =
+                string.Join(",",
+                mensual.Select(x =>
+                "'" + x.Nombre + "'"));
+
+            hfMesesValores.Value =
+                string.Join(",",
+                mensual.Select(x =>
+                x.Total));
         }
     }
 }

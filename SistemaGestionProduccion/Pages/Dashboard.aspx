@@ -5,79 +5,120 @@ Inherits="SistemaGestionProduccion.Pages.Dashboard" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 <div class="main-content">
+    <div class="welcome-section">
 
-    <!-- KPI -->
-    <div class="cards">
+    <h1>
+    ¡Bienvenido,
+    <asp:Label ID="lblNombreUsuario" runat="server" />
+    👋
+</h1>
 
-       <div class="dashboard-kpis">
+    <p>
+        <asp:Label ID="lblRolUsuario"
+                   runat="server" />
+        ,
+        <%= DateTime.Now.ToString("dddd dd MMMM yyyy") %>
+    </p>
+
+</div>
+  <!-- KPI -->
+<div class="dashboard-kpis">
 
     <div class="kpi-card pedidos">
 
-    <span>📋</span>
+        <div class="kpi-icon-box">
+            <i class="fas fa-clipboard-list"></i>
+        </div>
 
-    <h2>
-        <asp:Label ID="lblTotalPedidos" runat="server" />
-    </h2>
+        <h2>
+            <asp:Label ID="lblTotalPedidos" runat="server" />
+        </h2>
 
-    <p>Pedidos Activos</p>
+        <p>Pedidos Activos</p>
 
-    <div class="kpi-growth">
-        <asp:Label ID="lblCrecimientoPedidos"
-            runat="server" />
     </div>
 
-</div>
-
     <div class="kpi-card diseno">
-        <span>🎨</span>
+
+        <div class="kpi-icon-box">
+            <i class="fas fa-palette"></i>
+        </div>
+
         <h2>
             <asp:Label ID="lblDiseno" runat="server" />
         </h2>
+
         <p>En Diseño</p>
+
     </div>
 
     <div class="kpi-card produccion">
-        <span>🏭</span>
+
+        <div class="kpi-icon-box">
+            <i class="fas fa-industry"></i>
+        </div>
+
         <h2>
             <asp:Label ID="lblProduccion" runat="server" />
         </h2>
+
         <p>Producción</p>
+
     </div>
 
     <div class="kpi-card entregados">
-        <span>✅</span>
+
+        <div class="kpi-icon-box">
+            <i class="fas fa-check-circle"></i>
+        </div>
+
         <h2>
             <asp:Label ID="lblFinalizados" runat="server" />
         </h2>
+
         <p>Entregados</p>
+
     </div>
 
     <div class="kpi-card clientes">
-        <span>👥</span>
+
+        <div class="kpi-icon-box">
+            <i class="fas fa-users"></i>
+        </div>
+
         <h2>
-            <asp:Label ID="Label1" runat="server" />
+            <asp:Label ID="lblClientesKPI" runat="server" />
         </h2>
+
         <p>Clientes</p>
+
     </div>
 
     <div class="kpi-card ventas">
-        <span>💰</span>
+
+        <div class="kpi-icon-box">
+            <i class="fas fa-sack-dollar"></i>
+        </div>
+
         <h2>
             L.
             <asp:Label ID="lblVentas" runat="server" />
         </h2>
+
         <p>Ingresos Totales</p>
+
     </div>
 
 </div>
-
-    </div>
     <asp:HiddenField ID="hfEstadosLabels" runat="server" />
 <asp:HiddenField ID="hfEstadosValores" runat="server" />
+    <asp:HiddenField
+    ID="hfVentasLabels"
+    runat="server" />
 
-<asp:HiddenField ID="hfEtapasLabels" runat="server" />
-<asp:HiddenField ID="hfEtapasValores" runat="server" />
-
+<asp:HiddenField
+    ID="hfVentasValores"
+    runat="server" />
 <asp:HiddenField ID="hfMesesLabels" runat="server" />
 <asp:HiddenField ID="hfMesesValores" runat="server" />
    <div class="charts-grid">
@@ -91,16 +132,15 @@ Inherits="SistemaGestionProduccion.Pages.Dashboard" %>
         </div>
 
     </div>
+<div class="chart-card">
 
-    <div class="chart-card">
+    <h3>Ventas por Mes</h3>
 
-        <h3>Pedidos por Etapa</h3>
-
-        <div class="chart-container">
-            <canvas id="chartEtapas"></canvas>
-        </div>
-
+    <div class="chart-container">
+        <canvas id="chartVentas"></canvas>
     </div>
+
+</div>
 
 </div>
 
@@ -326,37 +366,36 @@ Inherits="SistemaGestionProduccion.Pages.Dashboard" %>
                 }
             });
 
-    // ETAPAS
-
+            //Ventas
         new Chart(
-            document.getElementById('chartEtapas'),
+            document.getElementById('chartVentas'),
             {
-                type: 'doughnut',
+                type: 'line',
+
                 data: {
-                    labels: [<%= hfEtapasLabels.Value %>],
+                    labels: [<%= hfVentasLabels.Value %>],
+
             datasets: [{
-                data: [<%= hfEtapasValores.Value %>],
+                label: 'Ventas (L.)',
 
-                backgroundColor: [
-                    '#9333EA', // Diseño
-                    '#F97316', // Finalizado
-                    '#22C55E'  // Producción
-                ],
+                            data: [<%= hfVentasValores.Value %>],
 
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
+                            borderColor: '#22c55e',
 
-            plugins: {
-                legend: {
-                    position: 'top'
-                }
-            }
-        }
-    });
+                            backgroundColor:
+                                'rgba(34,197,94,0.15)',
+
+                            fill: true,
+
+                            tension: 0.4
+                        }]
+                    },
+
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
 
     // PRODUCCION MENSUAL
 

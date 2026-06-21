@@ -15,6 +15,24 @@ namespace SistemaGestionProduccion.Pages
     {
 
         /// <summary>
+        /// Control lblNombreUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNombreUsuario;
+
+        /// <summary>
+        /// Control lblRolUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRolUsuario;
+
+        /// <summary>
         /// Control lblTotalPedidos.
         /// </summary>
         /// <remarks>
@@ -22,15 +40,6 @@ namespace SistemaGestionProduccion.Pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalPedidos;
-
-        /// <summary>
-        /// Control lblCrecimientoPedidos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCrecimientoPedidos;
 
         /// <summary>
         /// Control lblDiseno.
@@ -60,13 +69,13 @@ namespace SistemaGestionProduccion.Pages
         protected global::System.Web.UI.WebControls.Label lblFinalizados;
 
         /// <summary>
-        /// Control Label1.
+        /// Control lblClientesKPI.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblClientesKPI;
 
         /// <summary>
         /// Control lblVentas.
@@ -96,22 +105,22 @@ namespace SistemaGestionProduccion.Pages
         protected global::System.Web.UI.WebControls.HiddenField hfEstadosValores;
 
         /// <summary>
-        /// Control hfEtapasLabels.
+        /// Control hfVentasLabels.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfEtapasLabels;
+        protected global::System.Web.UI.WebControls.HiddenField hfVentasLabels;
 
         /// <summary>
-        /// Control hfEtapasValores.
+        /// Control hfVentasValores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfEtapasValores;
+        protected global::System.Web.UI.WebControls.HiddenField hfVentasValores;
 
         /// <summary>
         /// Control hfMesesLabels.
